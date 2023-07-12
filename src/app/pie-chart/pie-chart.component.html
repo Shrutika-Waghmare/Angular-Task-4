@@ -1,0 +1,20 @@
+<form [formGroup]="pieFormObj" (ngSubmit)="onSubmit()" class="d-flex">
+    <div class="form-group mr-4">
+        <label for="">Box 1</label><br>
+        <input type="text" formControlName="inputOne" placeholder="Insert 1st value" class="form-control">
+        <span class="text-danger" *ngIf="!pieFormObj.get('inputOne').valid && pieFormObj.get('inputOne').touched && pieFormObj.get('inputOne') !== 100">Please insert 1st value
+            <ng-container *ngIf="pieFormObj.get('inputOne')?.errors?.['max']">Please insert value below 100</ng-container>
+        </span>
+    </div>
+    <div class="form-group mr-4">
+        <label for="">Box 2</label><br>
+        <input type="text" formControlName="inputTwo" placeholder="Insert 2nd value" class="form-control">
+    </div>
+    <button class="btn btn-success btn-sm mr-4 myButton" type="submit">Create Chart</button>
+    <button class="btn btn-danger btn-sm myButton" (click)="onClickClear()">Clear</button>
+</form>
+<div class="col-12">
+    <div class="pie-chart-container">
+        <canvas id="pieChart" >{{ pieChart }}</canvas>
+    </div>
+</div>
